@@ -2405,6 +2405,7 @@ body {
   .section-banner {
     width: auto;
     height: 580px;
+    margin-bottom: 30px;
     background-image: url("assets/img/principal.jpg");
     background-position: 10% 0;
     background-size: cover
@@ -2426,12 +2427,9 @@ body {
   }
   
   .titulo-oferta-banner {
-    font-family: 'Simplonoi headline', sans-serif;
     color: #FBD6F8;
     font-size: 60px;
     line-height: 60px;
-    font-weight: 500;
-    text-align: left
   }
   
   .div-velocidade-banner {
@@ -2626,7 +2624,6 @@ body {
   .section-card-planos {
     width: auto;
     height: auto;
-    padding-top: 40px;
     margin-left: auto;
     margin-right: auto;
   }
@@ -2639,7 +2636,7 @@ body {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
-    display: flex;
+    display: grid;
     padding-bottom: 30px;
     -webkit-box-pack: center;
     -webkit-justify-content: center;
@@ -4139,16 +4136,6 @@ body {
     margin-right: 5px;
   }
 
-  .footer-brand {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-  }
-  
-  .footer-brand img {
-    margin-right: 5px;
-  }
-  
   .center-text {
     display: flex;
     align-items: center;

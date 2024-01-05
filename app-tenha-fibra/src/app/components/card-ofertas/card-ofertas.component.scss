@@ -1,0 +1,44 @@
+/* oferta-card.component.css */
+
+.card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-body {
+    padding: 20px;
+  }
+  
+  .row {
+    display: flex;
+    align-items: center;
+  }
+  
+  .col-1 {
+    flex: 0 0 8.33%;
+  }
+  
+  .col-1 img {
+    max-width: 50%;
+    height: 50%;
+    display: flex;
+  }
+  
+  .col-3 {
+    flex: 0 0 25%;
+    display: grid;
+    align-items: center;
+    justify-content: space-between;
+
+    img{
+        max-width: 10%;
+        height: 10%;
+    }
+  }
+
+
+
+

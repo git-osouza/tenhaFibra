@@ -6,9 +6,10 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class PhoneFormatPipe implements PipeTransform {
   transform(value: string): string {
-    const areaCode = value.substring(2, 4);
-    const phoneNumber = value.substring(4);
+    const prefix = value.substring(0, 4);
+    const code = value.substring(4, 7);
+    const number = value.substring(7, 11)
 
-    return `(${areaCode}) ${phoneNumber}`;
+    return `${prefix} ${code} ${number}`;
   }
 }

@@ -1,5 +1,5 @@
 export const environment = {
     production: false,
-    whatsappNumber: "5551994735626",
-    apiWhatsapp: `https://api.whatsapp.com/send?phone=`
+    whatsappNumber: "08001507777",
+    apiWhatsapp: `https://api.whatsapp.com/send?phone=5551`
 };

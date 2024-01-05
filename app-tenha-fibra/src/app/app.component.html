@@ -7,9 +7,16 @@
 
 <app-header></app-header>
 
-<app-section></app-section>
+<section id="Internet" class="section-card-planos wf-section">
+    <app-consulta-cep (currentCep)="handleCepChange($event)" *ngIf="!currentCep"></app-consulta-cep>
 
+    <div *ngIf="currentCep" class="preco2">
+        <div class="div-cards">
+            <div *ngFor="let oferta of ofertas">
+                <app-card-ofertas [oferta]="oferta"></app-card-ofertas>
+            </div>
+        </div>
+    </div>
+</section>
 <app-footer></app-footer>
-
-
 <router-outlet></router-outlet>
