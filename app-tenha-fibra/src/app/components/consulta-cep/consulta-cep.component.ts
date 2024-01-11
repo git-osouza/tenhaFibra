@@ -1,33 +1,33 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CepFormatPipe } from '../../shared/pipes/cep-format.pipe';
 import { ConsultaCepService } from './../../shared/services/cep/consulta-cep.service';
-import { Cep } from '../../shared/models/cep.models';
+import { CompartilhamentoDadosService } from '../../shared/services/dados/compartilhamento-dados.service';
 
 
 @Component({
   selector: 'app-consulta-cep',
   standalone: true,
   imports: [CepFormatPipe, FormsModule],
-  providers:[ConsultaCepService],
+  providers: [ConsultaCepService],
   templateUrl: './consulta-cep.component.html',
   styleUrl: './consulta-cep.component.scss'
 })
 export class ConsultaCepComponent {
 
-  @Output() currentCep = new EventEmitter<Cep>();
+  constructor(private consultaCepService: ConsultaCepService, private router: Router, private dados: CompartilhamentoDadosService) { }
 
+  public cep: string = '';
 
-  constructor(private consultaCepService: ConsultaCepService) {}
-  cep: string = '';
-
-  consultarCep(){
-    if(this.cep){
+  consultarCep() {
+    if (this.cep) {
       this.consultaCepService.consultarCEP(this.cep).subscribe(
         (data: any) => {
           if (!data.erro) {
             console.log(data);
-            this.currentCep.emit(data);
+            this.dados.setCep(data);
+            this.router.navigate(['/ofertas']);
           } else {
             console.log('CEP não encontrado.');
           }
@@ -40,7 +40,7 @@ export class ConsultaCepComponent {
     }
   }
 
-  isButtonDisabled():boolean {
+  isButtonDisabled(): boolean {
     return this.cep.length === 0;
   }
 }

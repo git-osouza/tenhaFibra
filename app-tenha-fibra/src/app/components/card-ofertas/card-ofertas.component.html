@@ -1,47 +1,48 @@
-<!-- oferta-card.component.html -->
-<div class="card container">
-    <div class="card-body">
-      <div class="row">
-        <div class="col-1">
-          <div *ngIf="oferta.popular">Popular</div>
-        </div>
-        <div class="col-1">
-            <img [src]="oferta.provedorImagem" alt="Provedor">
-          </div>    
-        <div class="col-1">
-          <img src="assets/img/velocimetro.png" alt="Velocímetro">
-          <span>{{ oferta.megas }} MB</span>
-        </div>
-        <div class="col-1">
-          <img src="assets/img/ethernet.png" alt="Cabo RJ45">
-          <span *ngIf="oferta.tipoTecnologia === 'cabo'">Cabo</span>
-          <span *ngIf="oferta.tipoTecnologia === 'fibra'">Fibra</span>
-        </div>
-        <div class="col-1">
-          <img src="assets/img/sinal-wifi.png" alt="WiFi">
-          <span>WIFI incluso</span>
-        </div>
-        <div class="col-1">
-          <span>{{ oferta.streamings }}</span>
-        </div>
-        <div class="col-1">
-          <div>
-            <strong>{{ oferta.valor | currency: 'BRL':'symbol':'1.2-2' }}</strong>
+<div *ngIf=" oferta && oferta.catalogo">
+  <div *ngFor="let item of oferta.catalogo">
+    <div class="card container">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-2">
+            <span>{{ item.info_plano.operadora }}</span><br>
+            <span>{{ item.info_plano.dados }}</span>
           </div>
-          <div>Por mês</div>
-          <div>Instalação grátis</div>
-        </div>
-        <div class="col-3">
-          <div *ngIf="oferta.cobertura; else noCobertura">
-            <img src="assets/img/correto.png" alt="Check">
+          <div class="col-1">
+            <img src="assets/img/velocimetro.png" alt="Velocímetro">
+            <span>{{ item.info_plano.dados }} MB</span><br>
           </div>
-          <ng-template #noCobertura>
-            <img src="assets/img/incorreta.png" alt="Negativo">
-          </ng-template>
-          <button>Assinar</button>
-          <a href="#">Mais Detalhes</a>
+          <div class="col-1">
+            <img src="assets/img/ethernet.png" alt="Cabo RJ45">
+            <span>{{ item.info_plano.tecnologia }}</span>
+          </div>
+          <div class="col-1" *ngFor="let detalhe of item.info_plano.detalhe">
+            <div *ngIf="detalhe.titulo === 'Wi-Fi grátis'">
+              <img src="assets/img/sinal-wifi.png" alt="WiFi">
+              <span>WIFI incluso</span>
+            </div>
+          </div>
+          <div class="col-1">
+            <span>teste</span>
+          </div>
+          <div class="col-1">
+            <div>
+              <strong>{{ item.valores_plano.valor_oferta | currency: 'BRL':'symbol':'1.2-2' }}</strong>
+            </div>
+            <div>Por mês</div>
+            <div>Instalação grátis</div>
+          </div>
+          <div class="col-3">
+            <div *ngIf="item.cobertura; else noCobertura">
+              <img src="assets/img/correto.png" alt="Check">
+            </div>
+            <ng-template #noCobertura>
+              <img src="assets/img/incorreta.png" alt="Negativo">
+            </ng-template>
+            <button>Assinar</button>
+            <a href="#">Mais Detalhes</a>
+          </div>
         </div>
       </div>
     </div>
   </div>
-  
+</div>

@@ -1,55 +1,50 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { CUSTOM_ELEMENTS_SCHEMA, Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { NgxSpinnerComponent, NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 import { CardOfertasComponent } from './components/card-ofertas/card-ofertas.component';
 import { ConsultaCepComponent } from './components/consulta-cep/consulta-cep.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
-import { HttpClientModule } from '@angular/common/http';
 import { Cep } from './shared/models/cep.models';
+import { ConsultaOfertasService } from './shared/services/ofertas/consulta-ofertas.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, FooterComponent, HeaderComponent, CardOfertasComponent, ConsultaCepComponent, HttpClientModule],
+  imports: [CommonModule, RouterOutlet, FooterComponent, HeaderComponent, CardOfertasComponent, ConsultaCepComponent, HttpClientModule, NgxSpinnerModule],
   templateUrl: './app.component.html',
+  providers:[ConsultaOfertasService, NgxSpinnerService],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit{
 
-  public currentCep?: Cep;
-  
-  constructor() { }
+  constructor(private consultaOfertasService: ConsultaOfertasService, private spinner: NgxSpinnerService) { }
   
   ngOnInit(): void {
-    
+    this.spinner.show();
+
+    setTimeout(() => {
+      this.spinner.hide();
+    }, 2000);
   }
 
-  ofertas = [
-    {
-      popular: true,
-      provedorImagem: 'caminho/do/oi.png',
-      megas: 100,
-      tipoTecnologia: 'fibra',
-      wifiIncluso: true,
-      streamings: 'Netflix, Amazon Prime',
-      valor: 79.99,
-      cobertura: true
-    },
-    {
-      popular: false,
-      provedorImagem: 'caminho/do/vivo.png',
-      megas: 50,
-      tipoTecnologia: 'cabo',
-      wifiIncluso: false,
-      streamings: 'YouTube, Spotify',
-      valor: 59.99,
-      cobertura: false
-    }  ];
-
-  handleCepChange(cep: Cep){
-    if(cep){
-      this.currentCep = cep;
-    }
+  consultarPlanosByCep(){
+      this.consultaOfertasService.consultarOfertas('93542510').subscribe(
+        (data: any) => {
+          if (!data.erro) {
+            console.log(data);
+          } else {
+            console.log('encontrado.');
+          }
+        },
+        (error) => {
+          console.log('Ocorreu um erro na consulta do CEP.');
+          console.error(error);
+        }
+      );
   }
+
 }
