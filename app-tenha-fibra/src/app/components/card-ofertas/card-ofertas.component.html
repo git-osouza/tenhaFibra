@@ -1,48 +1,72 @@
+<nav *ngIf=" oferta && oferta.catalogo"
+  class="navbar navbar-expand-lg navbar-light w-100 navbar-clone fixed navbar-stick custom-bg-color p-4">
+  <div class="container px-3">
+    <span>Exibindo {{oferta.catalogo.length}} resultados para: {{oferta.endereco.logradouro}},
+      {{oferta.endereco.bairro}}, {{oferta.endereco.cidade}} - {{oferta.endereco.estado}},
+      {{oferta.endereco.cep}}</span>
+    <a href="/home"><strong>Alterar endereço</strong></a>
+  </div>
+</nav>
+
 <div *ngIf=" oferta && oferta.catalogo">
-  <div *ngFor="let item of oferta.catalogo">
-    <div class="card container">
+  <div *ngFor="let item of oferta.catalogo.slice(0, exibirQuantidade)">
+    <div class="card container" style="padding: 10px;">
       <div class="card-body">
-        <div class="row">
-          <div class="col-2">
-            <span>{{ item.info_plano.operadora }}</span><br>
-            <span>{{ item.info_plano.dados }}</span>
-          </div>
-          <div class="col-1">
-            <img src="assets/img/velocimetro.png" alt="Velocímetro">
-            <span>{{ item.info_plano.dados }} MB</span><br>
-          </div>
-          <div class="col-1">
-            <img src="assets/img/ethernet.png" alt="Cabo RJ45">
-            <span>{{ item.info_plano.tecnologia }}</span>
-          </div>
-          <div class="col-1" *ngFor="let detalhe of item.info_plano.detalhe">
-            <div *ngIf="detalhe.titulo === 'Wi-Fi grátis'">
-              <img src="assets/img/sinal-wifi.png" alt="WiFi">
-              <span>WIFI incluso</span>
+        <div class="container">
+          <div class="row">
+            <div class="col-1">
+              <img [style.max-width]="'100%'" class="img-logos" *ngIf="item.info_plano.operadora === 'VIVO'" src="assets/img/vivo-logo.webp">
+              <img [style.max-width]="'66%'"class="img-logos" *ngIf="item.info_plano.operadora === 'TIM'" src="assets/img/Logos_tim.png">
+              <img [style.max-width]="'100%'"class="img-logos" *ngIf="item.info_plano.operadora === 'OI'" src="assets/img/oi-logo.webp">
+              <img [style.max-width]="'66%'"class="img-logos" *ngIf="item.info_plano.operadora === 'SKY'" src="assets/img/logo-sky.svg">
+              <span><strong style="display: block;">{{ item.info_plano.dados }}</strong></span>
             </div>
-          </div>
-          <div class="col-1">
-            <span>teste</span>
-          </div>
-          <div class="col-1">
-            <div>
+            <div class="col-1">
+              <img src="assets/img/velocimetros.png" alt="Velocímetro">
+              <span class="text-muted" *ngIf="item.info_plano.dados.split(' ')[0].length === 1"> {{
+                item.info_plano.dados.split(' ')[0] }} GB</span>
+              <span class="text-muted" *ngIf="item.info_plano.dados.split(' ')[0].length !== 1"> {{
+                item.info_plano.dados.split(' ')[0] }} MB</span>
+            </div>
+            <div class="col-1">
+              <img src="assets/img/cabo (1).png" alt="Cabo RJ45">
+              <span class="text-muted">{{ item.info_plano.tecnologia }}</span>
+            </div>
+            <div class="col-1">
+              <img src="assets/img/sinal.png" alt="WiFi">
+              <span class="text-muted">WIFI incluso</span>
+            </div>
+            <div class="col-1">
+              <img src="assets/img/streaming-de-video.png" alt="Serviços de streaming">
+              <span class="text-muted detalhea">Serviços digitais*</span>
+            </div>
+            <div class="col-1">
               <strong>{{ item.valores_plano.valor_oferta | currency: 'BRL':'symbol':'1.2-2' }}</strong>
+              <span class="text-muted">Por mês Instalação grátis</span> 
             </div>
-            <div>Por mês</div>
-            <div>Instalação grátis</div>
-          </div>
-          <div class="col-3">
-            <div *ngIf="item.cobertura; else noCobertura">
-              <img src="assets/img/correto.png" alt="Check">
+            <div class="col-3">
+              <div *ngIf="item.cobertura; else noCobertura">
+                <img src="assets/img/correto.png" alt="Check">
+                <span class="text-muted-lazy">Cobertura confirmada</span>
+              </div>
+              <ng-template #noCobertura>
+                <img src="assets/img/incorreta.png" alt="Negativo">
+                <span class="text-muted-lazy">Sem cobertura</span>
+              </ng-template>
+              <button class="btn btn-success btn-assinar" (click)='assinarAgora(item)' type="button">Assinar
+              </button>
+              <div style="margin-top: 10px;"></div>
+              <button class="btn btn-success btn-assinar-wpp" (click)='assinarWhatsapp(item)' type="button">Assinar pelo Whatsapp
+              </button>
             </div>
-            <ng-template #noCobertura>
-              <img src="assets/img/incorreta.png" alt="Negativo">
-            </ng-template>
-            <button>Assinar</button>
-            <a href="#">Mais Detalhes</a>
           </div>
         </div>
       </div>
     </div>
+  </div>
+  <div class="d-flex justify-content-center">
+    <button [disabled]="exibirQuantidade >= oferta.catalogo.length" class="btn btn-assinar" (click)="exibirMaisResultados()">
+      Exibir mais
+    </button>
   </div>
 </div>

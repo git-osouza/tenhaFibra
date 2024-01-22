@@ -5,7 +5,7 @@
     border-radius: 8px;
     margin-bottom: 20px;
     overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
   
   .card-body {
@@ -13,14 +13,18 @@
   }
   
   .row {
-    display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
+    margin: 0px -144px;
   }
   
   .col-1 .col-2 {
-    flex: 0 0 8.33%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
   }
   
   .col-1 .col-2 img {
@@ -36,18 +40,69 @@
     justify-content: space-between;
 
     img{
-        max-width: 10%;
-        height: 10%;
+        max-width: 6%;
+        height: 6%;
     }
   }
 
   img {
     border: 0;
-    max-width: 66%;
+    max-width: 43%;
     vertical-align: middle;
-    display: inline-block
+    display: inline-block;
   }
 
+  .text-muted{
+    font-size: 12px !important;
+    font-style: normal !important;
+    font-weight: 500 !important;
+    line-height: normal !important;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    padding-top: 12px;
+  }
 
+  .text-muted-lazy{
+    font-size: 10px !important;
+    font-style: normal !important;
+    font-weight: 500 !important;
+    line-height: normal !important;
+    margin-left: 3px;
+  }
 
+  .detalhes{
+    padding: 0px;
+  }
 
+  .btn-assinar{
+    color: #fff !important;
+    background-color: #6D01A4 !important;
+    border-radius: 20px !important;
+    border-color: #6D01A4 !important;
+}
+
+.btn-assinar-wpp{
+  color: #6D01A4 !important;
+  background-color: #fff !important;
+  border-radius: 20px !important;
+  border-color: #6D01A4 !important;
+}
+
+.custom-bg-color {
+  //background-color: #eae9e9;
+  background-color: #6D01A4;
+  color: #fff;
+  margin-bottom: 15px;
+}
+
+a{
+  text-decoration: none;
+  color: #fff;
+}
+
+.img-logos {
+  border: 0;
+  vertical-align: middle;
+  display: inline-block
+}

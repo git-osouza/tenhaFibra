@@ -2,18 +2,19 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { CUSTOM_ELEMENTS_SCHEMA, Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { NgxSpinnerComponent, NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
+import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 import { CardOfertasComponent } from './components/card-ofertas/card-ofertas.component';
 import { ConsultaCepComponent } from './components/consulta-cep/consulta-cep.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
-import { Cep } from './shared/models/cep.models';
+import { InformacaoComponent } from './components/informacao/informacao.component';
 import { ConsultaOfertasService } from './shared/services/ofertas/consulta-ofertas.service';
+import { ContratacaoComponent } from './components/contratacao/contratacao.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, FooterComponent, HeaderComponent, CardOfertasComponent, ConsultaCepComponent, HttpClientModule, NgxSpinnerModule],
+  imports: [CommonModule, RouterOutlet, FooterComponent, HeaderComponent, CardOfertasComponent, ConsultaCepComponent, HttpClientModule, NgxSpinnerModule, InformacaoComponent, ContratacaoComponent],
   templateUrl: './app.component.html',
   providers:[ConsultaOfertasService, NgxSpinnerService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
