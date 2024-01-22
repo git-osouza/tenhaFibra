@@ -5,6 +5,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable, map, of } from 'rxjs';
 import { CompartilhamentoDadosService } from '../../shared/services/dados/compartilhamento-dados.service';
 import { ConsultaOfertasService } from './../../shared/services/ofertas/consulta-ofertas.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-card-ofertas',
@@ -17,9 +18,13 @@ import { ConsultaOfertasService } from './../../shared/services/ofertas/consulta
 export class CardOfertasComponent implements OnInit {
 
   public oferta: any;
-  public resultadosPorPagina = 5;
+  public resultadosPorPagina = 4;
   public totalResultados = 0;
-  public exibirQuantidade = 5;
+  public exibirQuantidade = 4;
+  public currentPage: number = 1;
+  public itemsPerPage: number = 4;
+  public paginatedCatalogo: any[] = [];
+  public pages: number[] = [];
 
   constructor(private spinner: NgxSpinnerService, private dados: CompartilhamentoDadosService, private ofertas: ConsultaOfertasService, private router: Router) {
 
@@ -42,6 +47,7 @@ export class CardOfertasComponent implements OnInit {
           this.oferta = oferta;
           this.spinner.hide();
           console.log('ofertas carregadas', this.oferta);
+          this.paginateCatalogo();
         } else {
           if (!this.oferta) {
             this.router.navigate(['/home']);
@@ -78,6 +84,7 @@ export class CardOfertasComponent implements OnInit {
 
   assinarWhatsapp(item: any) {
     console.log('whatsapp', item);
+    window.open(`https://wa.me/5551${environment.whatsappNumber}?text=Ol%C3%A1%2C+eu+vim+atrav%C3%A9s+do+site+e+quero+contratar+o+plano+${item.nome.replace(' ','+')}++R%24+${item.valores_plano.valor_oferta}`,'_blank');
   }
 
   exibirMaisResultados(): void {
@@ -85,6 +92,7 @@ export class CardOfertasComponent implements OnInit {
     setTimeout(() => {
       this.spinner.hide();
       this.exibirQuantidade += this.resultadosPorPagina;
+      this.paginateCatalogo();
     }, 1500);
   }
 
@@ -92,4 +100,23 @@ export class CardOfertasComponent implements OnInit {
     this.exibirQuantidade = this.resultadosPorPagina;
   }
 
+  paginateCatalogo(): void {
+    const start = (this.currentPage - 1) * this.itemsPerPage;
+    const end = start + this.itemsPerPage;
+    this.paginatedCatalogo = this.oferta.catalogo.slice(start, end);
+
+    const pageCount = Math.ceil(this.oferta.catalogo.length / this.itemsPerPage);
+    this.pages = Array.from({ length: pageCount }, (_, i) => i + 1);
+  }
+
+  setPage(page: number): void {
+    if (page >= 1 && page <= this.pages.length) {
+      this.spinner.show();
+      setTimeout(() => {
+        this.spinner.hide();
+        this.currentPage = page;
+        this.paginateCatalogo();
+      }, 500);
+    }
+  }
 }

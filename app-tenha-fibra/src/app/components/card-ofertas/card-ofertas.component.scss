@@ -9,7 +9,7 @@
   }
   
   .card-body {
-    padding: 20px;
+    padding: 4px;
   }
   
   .row {
@@ -90,7 +90,6 @@
 }
 
 .custom-bg-color {
-  //background-color: #eae9e9;
   background-color: #6D01A4;
   color: #fff;
   margin-bottom: 15px;
@@ -105,4 +104,41 @@ a{
   border: 0;
   vertical-align: middle;
   display: inline-block
+}
+
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.page-item {
+  list-style-type: none;
+  margin: 0 2px;
+}
+
+.page-link {
+  padding: 8px 12px;
+  font-size: 14px;
+  background-color: #fff;
+  color: #6D01A4;
+  border: 1px solid #6D01A4;
+}
+
+.page-item.active .page-link {
+  background-color: #6D01A4;
+  color: #fff;
+  border: none;
+  box-shadow: none;
+}
+
+.page-link.prev-next {
+  background-color: #6D01A4;
+  color: #fff;
+  border: none;
+  box-shadow: none;
+}
+
+.page-link:hover {
+  text-decoration: none;
 }

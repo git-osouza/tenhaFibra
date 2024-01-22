@@ -22,7 +22,7 @@ import { ContratacaoComponent } from './components/contratacao/contratacao.compo
 })
 export class AppComponent implements OnInit{
 
-  constructor(private consultaOfertasService: ConsultaOfertasService, private spinner: NgxSpinnerService) { }
+  constructor(private spinner: NgxSpinnerService) { }
   
   ngOnInit(): void {
     this.spinner.show();
@@ -31,21 +31,4 @@ export class AppComponent implements OnInit{
       this.spinner.hide();
     }, 2000);
   }
-
-  consultarPlanosByCep(){
-      this.consultaOfertasService.consultarOfertas('93542510').subscribe(
-        (data: any) => {
-          if (!data.erro) {
-            console.log(data);
-          } else {
-            console.log('encontrado.');
-          }
-        },
-        (error) => {
-          console.log('Ocorreu um erro na consulta do CEP.');
-          console.error(error);
-        }
-      );
-  }
-
 }
