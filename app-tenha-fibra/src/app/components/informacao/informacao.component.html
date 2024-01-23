@@ -1,3 +1,22 @@
+<div style="margin: 0px 706px; padding-top: 15px;" class="container carousel-container">
+    <carousel 
+        [itemsPerSlide]="itemsPerSlide" 
+        [singleSlideOffset]="true" 
+        [noWrap]="false"
+        [interval]="cycleInterval" 
+        [startFromIndex]="0"
+        [showIndicators]="false"
+        [noPause]="true" 
+        class="custom-carousel container">
+        <slide *ngFor="let slide of slides; let index=index" class="mx-auto">
+        <div class="row align-items-center container">
+            <div class="col-12 col-lg-2 mb-4 mb-lg-0 text-center">
+                 <img [src]="slide.image" class="img-fluid me-company lazyloaded" alt="Slide Image">
+            </div>
+        </div>
+        </slide>
+    </carousel>
+</div>
 <div class="container-component aem-GridColumn aem-GridColumn--default--12">
     <div class="container container--original">
         <div class="aem-Grid aem-Grid--12 aem-Grid--default--12">
@@ -27,8 +46,7 @@
                         <div class="row" data-controller="card" data-theme="component-color--original"
                             data-color="white"
                             data-settings="{&quot;section&quot;: &quot;&quot;, &quot;pagina&quot;:&quot;Internet Vivo Fibra: Planos de Banda Larga com Wi-Fi gr�tis&quot;}">
-                            <div
-                                class="card-text col-md-12 col-lg-4 col-xl-4 card-text--3 flex-order-- text-center">
+                            <div class="card-text col-md-12 col-lg-4 col-xl-4 card-text--3 flex-order-- text-center">
                                 <figure class="card-text__image card-text__image--quadrada">
                                     <img src="assets/img/vivo-computador-velocidade-purpura-esquerda-320x320.svg">
                                 </figure>
@@ -38,8 +56,7 @@
                                         streamings.<br></p>
                                 </div>
                             </div>
-                            <div
-                                class="card-text col-md-12 col-lg-4 col-xl-4 card-text--3 flex-order-- text-center">
+                            <div class="card-text col-md-12 col-lg-4 col-xl-4 card-text--3 flex-order-- text-center">
                                 <figure class="card-text__image card-text__image--quadrada">
                                     <img src="assets/img/vivo-fibra-estabilidade-conexao-notebook-320x320.svg">
                                 </figure>
@@ -49,8 +66,7 @@
                                         vídeos.&nbsp;</p>
                                 </div>
                             </div>
-                            <div
-                                class="card-text col-md-12 col-lg-4 col-xl-4 card-text--3 flex-order-- text-center">
+                            <div class="card-text col-md-12 col-lg-4 col-xl-4 card-text--3 flex-order-- text-center">
                                 <figure class="card-text__image card-text__image--quadrada">
                                     <img src="assets/img/vivo-sva-apps-inclusos-rosa-320x320.svg">
                                 </figure>
