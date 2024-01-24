@@ -2,3 +2,33 @@
     background-color: #FFF;
     color: #6D01A4;
 }
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  
+  .navbar-brand img {
+    margin-right: 5px;
+  }
+  
+  .whatsapp-img {
+    width: 24px;
+    height: 24px;
+    margin-right: 5px;
+  }
+  
+  .whatsapp-number {
+    display: inline-block;
+    margin-left: 5px;
+    font-size: 20px;
+    color: black;
+    letter-spacing: 1px;
+  }
+  
+  @media (max-width: 767px) {
+    .whatsapp-number {
+      display: block;
+    }
+  }

@@ -6,12 +6,14 @@ import { Observable, map, of } from 'rxjs';
 import { CompartilhamentoDadosService } from '../../shared/services/dados/compartilhamento-dados.service';
 import { ConsultaOfertasService } from './../../shared/services/ofertas/consulta-ofertas.service';
 import { environment } from '../../../environments/environment';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { ContratacaoComponent } from '../contratacao/contratacao.component';
 
 @Component({
   selector: 'app-card-ofertas',
   standalone: true,
   imports: [CommonModule],
-  providers: [],
+  providers: [BsModalService],
   templateUrl: './card-ofertas.component.html',
   styleUrl: './card-ofertas.component.scss'
 })
@@ -25,8 +27,9 @@ export class CardOfertasComponent implements OnInit {
   public itemsPerPage: number = 4;
   public paginatedCatalogo: any[] = [];
   public pages: number[] = [];
+  public modalRef!: BsModalRef<ContratacaoComponent>;
 
-  constructor(private spinner: NgxSpinnerService, private dados: CompartilhamentoDadosService, private ofertas: ConsultaOfertasService, private router: Router) {
+  constructor(private spinner: NgxSpinnerService, private dados: CompartilhamentoDadosService, private ofertas: ConsultaOfertasService, private router: Router,  private modalService: BsModalService) {
 
   }
 
@@ -79,7 +82,18 @@ export class CardOfertasComponent implements OnInit {
 
   assinarAgora(item: any) {
     console.log('online', item);
-    this.router.navigate(['/contratacao']);
+
+    const initialState: Partial<ContratacaoComponent> = {
+      input: 'input',
+      currentCep: this.dados.getCep()
+    };
+
+    this.modalRef = this.modalService.show(ContratacaoComponent, {
+      initialState,
+      class: 'modal-lg',
+      backdrop: 'static',
+      keyboard: false
+    });
   }
 
   assinarWhatsapp(item: any) {
