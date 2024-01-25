@@ -33,7 +33,7 @@
               "src/styles.scss",
               "node_modules/ngx-spinner/animations/ball-spin-clockwise-fade.css"
             ],
-            "scripts": [],
+            "scripts": ["node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"],
             "server": "src/main.server.ts",
             "prerender": true,
             "ssr": {
