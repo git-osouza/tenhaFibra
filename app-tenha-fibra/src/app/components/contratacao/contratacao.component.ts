@@ -36,7 +36,8 @@ export class ContratacaoComponent implements OnInit {
     numero: new FormControl('', [Validators.required]),
     bairro: new FormControl('', [Validators.required]),
     cidade: new FormControl('', [Validators.required]),
-    uf: new FormControl('', [Validators.required])
+    uf: new FormControl('', [Validators.required]),
+    complemento: new FormControl('', [Validators.required])
   });
 
   public dadosPessoais = new FormGroup({
@@ -88,12 +89,13 @@ export class ContratacaoComponent implements OnInit {
     console.log('Formulario endereço bairro: ', this.formulario.get('bairro')?.value);
     console.log('Formulario endereço cidade: ', this.formulario.get('cidade')?.value);
     console.log('Formulario endereço uf: ', this.formulario.get('uf')?.value);
+    console.log('Formulario endereço complemento: ', this.formulario.get('complemento')?.value);
 
     console.log('Formulario plano planoInternet: ', this.plano.get('planoInternet')?.value);
     console.log('Formulario plano manhaCheckbox: ', this.plano.get('manhaCheckbox')?.value);
     console.log('Formulario plano tardeCheckbox: ', this.plano.get('tardeCheckbox')?.value);
     console.log('Data lead: ', this.datePipe.transform(new Date(), 'dd/MM/yyyy HH:mm:ss')?.toString());
-    
+
     const insert: any = {
       "nome_completo": this.dadosPessoais.get('nomeCompleto')?.value,
       "cpf": this.dadosPessoais.get('cpf')?.value,
@@ -103,7 +105,7 @@ export class ContratacaoComponent implements OnInit {
       "endereco": this.formulario.get('endereco')?.value,
       "numero": this.formulario.get('numero')?.value,
       "bairro": this.formulario.get('bairro')?.value,
-      "complemento": 'falta implementar',
+      "complemento": this.formulario.get('complemento')?.value,
       "cidade": this.formulario.get('cidade')?.value,
       "uf": this.formulario.get('uf')?.value,
       "plano": this.plano.get('planoInternet')?.value,
@@ -202,7 +204,8 @@ export class ContratacaoComponent implements OnInit {
         numero: '',
         bairro: this.currentCep.bairro || '',
         cidade: this.currentCep.localidade || '',
-        uf: this.currentCep.uf || ''
+        uf: this.currentCep.uf || '',
+        complemento: this.currentCep.complemento || ''
       });
     }
   }

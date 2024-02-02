@@ -1,24 +1,30 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CepFormatPipe } from '../../shared/pipes/cep-format.pipe';
 import { ConsultaCepService } from './../../shared/services/cep/consulta-cep.service';
 import { CompartilhamentoDadosService } from '../../shared/services/dados/compartilhamento-dados.service';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-consulta-cep',
   standalone: true,
-  imports: [CepFormatPipe, FormsModule],
+  imports: [CepFormatPipe, FormsModule, CommonModule],
   providers: [ConsultaCepService],
   templateUrl: './consulta-cep.component.html',
   styleUrl: './consulta-cep.component.scss'
 })
-export class ConsultaCepComponent {
+export class ConsultaCepComponent implements OnInit{
 
   constructor(private consultaCepService: ConsultaCepService, private router: Router, private dados: CompartilhamentoDadosService) { }
 
   public cep: string = '';
+
+
+  ngOnInit(): void {
+    this.renderImages();
+  }
 
   consultarCep() {
     if (this.cep) {
@@ -43,4 +49,16 @@ export class ConsultaCepComponent {
   isButtonDisabled(): boolean {
     return this.cep.length === 0;
   }
+
+  renderImages() {
+    setTimeout(() => {
+      if (typeof document !== 'undefined') {
+        let filterContainer = document.querySelector(".container-cep") as HTMLElement;
+        console.log(filterContainer);
+        filterContainer.style.backgroundImage = `url('assets/img/GIF-TENHA-FIBRA.gif-completo.gif')`;
+      }
+    }, 100);
+  }
+
+
 }

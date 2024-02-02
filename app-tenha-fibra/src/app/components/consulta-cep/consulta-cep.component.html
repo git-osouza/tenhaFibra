@@ -1,4 +1,4 @@
-<section class="container-cep">
+<section class="container-cep" id="container-CEP">
     <div class="container banner">
         <div class=" container">
             <h1 style="letter-spacing: 2px; color: #fff;">TENHA <strong> FIBRA</strong></h1>
@@ -10,22 +10,22 @@
                     </div>
                     <div class="col-1 input-cep mb-3">
                         <div class="input-group mb-3">
-                            <input 
+                            <input
                                 minlength="0"
                                 maxlength="9"
-                                type="text" 
-                                class="form-control" 
-                                name="cepInput" 
+                                type="text"
+                                class="form-control"
+                                name="cepInput"
                                 placeholder="Seu CEP"
-                                [(ngModel)]="cep" 
+                                [(ngModel)]="cep"
                                 [value]="cep | cepFormat"
                                 (keyup.enter)="consultarCep()">
                         </div>
                     </div>
                     <div class="col-2 mb-3">
-                        <button 
-                            [disabled]="isButtonDisabled()" 
-                            class="btn btn-success btn-consultar-cep" 
+                        <button
+                            [disabled]="isButtonDisabled()"
+                            class="btn btn-success btn-consultar-cep"
                             (click)='consultarCep()'
                             type="button">Consultar Planos
                         </button>
