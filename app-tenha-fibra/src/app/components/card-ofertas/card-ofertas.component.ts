@@ -84,7 +84,7 @@ export class CardOfertasComponent implements OnInit {
     console.log('online', item);
 
     const initialState: Partial<ContratacaoComponent> = {
-      input: 'input',
+      item: item,
       currentCep: this.dados.getCep()
     };
 

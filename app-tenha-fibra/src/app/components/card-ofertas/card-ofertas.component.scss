@@ -7,18 +7,18 @@
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
-  
+
   .card-body {
     padding: 4px;
   }
-  
+
   .row {
     align-items: center;
     justify-content: center;
     text-align: center;
     margin: 0px -144px;
   }
-  
+
   .col-1 .col-2 {
     display: flex;
     flex-direction: column;
@@ -26,7 +26,7 @@
     text-align: center;
 
   }
-  
+
   .col-1 .col-2 img {
     max-width: 50%;
     height: 50%;
@@ -40,7 +40,7 @@
     justify-content: space-between;
 
     img{
-        max-width: 6%;
+        max-width: 4%;
         height: 6%;
     }
   }

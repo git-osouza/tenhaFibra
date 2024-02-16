@@ -42,12 +42,12 @@
             </div>
             <div class="col-1">
               <strong>{{ item.valores_plano.valor_oferta | currency: 'BRL':'symbol':'1.2-2' }}</strong>
-              <span class="text-muted">Por mês Instalação grátis</span> 
+              <span class="text-muted">Por mês Instalação grátis</span>
             </div>
             <div class="col-3">
               <div *ngIf="item.cobertura; else noCobertura">
-                <img src="assets/img/correto.png" alt="Check">
-                <span class="text-muted-lazy">Cobertura confirmada</span>
+                <img src="assets/img/question.png" alt="Check">
+                <span class="text-muted-lazy">Há confirmar</span>
               </div>
               <ng-template #noCobertura>
                 <img src="assets/img/incorreta.png" alt="Negativo">

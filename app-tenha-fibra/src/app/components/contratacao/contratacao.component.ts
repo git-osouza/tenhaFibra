@@ -8,7 +8,7 @@ import { ConsultaCepService } from '../../shared/services/cep/consulta-cep.servi
 import { CompartilhamentoDadosService } from '../../shared/services/dados/compartilhamento-dados.service';
 import { HttpClientModule } from '@angular/common/http';
 import { LeadsService } from '../../shared/services/lead/leads.service';
-import { DatePipe } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 
@@ -17,7 +17,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-contratacao',
   standalone: true,
-  imports: [FontAwesomeModule, ReactiveFormsModule, HttpClientModule],
+  imports: [FontAwesomeModule, ReactiveFormsModule, HttpClientModule, CommonModule],
   providers: [ConsultaCepService, LeadsService, DatePipe],
   templateUrl: './contratacao.component.html',
   styleUrl: './contratacao.component.scss'
@@ -29,6 +29,7 @@ export class ContratacaoComponent implements OnInit {
   public totalSteps = 3;
   public input?: string;
   public currentCep?: any;
+  public item?: any;
 
   public formulario = new FormGroup({
     cep: new FormControl('', [Validators.required]),
@@ -45,6 +46,7 @@ export class ContratacaoComponent implements OnInit {
     cpf: new FormControl('', [Validators.required]),
     telefone: new FormControl('', [Validators.required]),
     whatsapp: new FormControl(true, [Validators.required]),
+    email: new FormControl('', [Validators.required]),
   });
 
   public plano = new FormGroup({
@@ -78,29 +80,12 @@ export class ContratacaoComponent implements OnInit {
 
   saveDataGet() {
 
-    console.log('Formulario dados pessoais nome: ', this.dadosPessoais.get('nomeCompleto')?.value);
-    console.log('Formulario dados pessoais cpf: ', this.dadosPessoais.get('cpf')?.value);
-    console.log('Formulario dados pessoais telefone: ', this.dadosPessoais.get('telefone')?.value);
-    console.log('Formulario dados pessoais whatsapp: ', this.dadosPessoais.get('whatsapp')?.value);
-
-    console.log('Formulario endereço cep: ', this.formulario.get('cep')?.value);
-    console.log('Formulario endereço endereco: ', this.formulario.get('endereco')?.value);
-    console.log('Formulario endereço numero: ', this.formulario.get('numero')?.value);
-    console.log('Formulario endereço bairro: ', this.formulario.get('bairro')?.value);
-    console.log('Formulario endereço cidade: ', this.formulario.get('cidade')?.value);
-    console.log('Formulario endereço uf: ', this.formulario.get('uf')?.value);
-    console.log('Formulario endereço complemento: ', this.formulario.get('complemento')?.value);
-
-    console.log('Formulario plano planoInternet: ', this.plano.get('planoInternet')?.value);
-    console.log('Formulario plano manhaCheckbox: ', this.plano.get('manhaCheckbox')?.value);
-    console.log('Formulario plano tardeCheckbox: ', this.plano.get('tardeCheckbox')?.value);
-    console.log('Data lead: ', this.datePipe.transform(new Date(), 'dd/MM/yyyy HH:mm:ss')?.toString());
-
     const insert: any = {
       "nome_completo": this.dadosPessoais.get('nomeCompleto')?.value,
       "cpf": this.dadosPessoais.get('cpf')?.value,
       "telefone": this.dadosPessoais.get('telefone')?.value,
       "whatsapp": this.dadosPessoais.get('whatsapp')?.value,
+      "email": this.dadosPessoais.get('email')?.value,
       "cep": this.formulario.get('cep')?.value,
       "endereco": this.formulario.get('endereco')?.value,
       "numero": this.formulario.get('numero')?.value,
@@ -108,8 +93,12 @@ export class ContratacaoComponent implements OnInit {
       "complemento": this.formulario.get('complemento')?.value,
       "cidade": this.formulario.get('cidade')?.value,
       "uf": this.formulario.get('uf')?.value,
-      "plano": this.plano.get('planoInternet')?.value,
-      "turno_instalacao": this.plano.get('manhaCheckbox')?.value,
+      "plano": `${this.item.nome} - R$ ${this.item.valores_plano.valor_oferta}`,
+      "turno_instalacao": this.setTurnoInstalacao(
+        this.plano.get('manhaCheckbox')?.value as string | undefined,
+        this.plano.get('tardeCheckbox')?.value as string | undefined
+      ),
+
       "data_lead": new Date()
     }
 
@@ -118,13 +107,12 @@ export class ContratacaoComponent implements OnInit {
          console.log(response);
          Swal.fire({
           title: "Solicitação enviada com sucesso!",
-          html: "Nós agradecemos a preferencia",
+          html: "Nós agradecemos a preferência",
           confirmButtonText: "Fechar",
           icon: "success"
         }).then((result => {
           if(result.isConfirmed){
             this.modalRef.hide();
-            this.router.navigate(['/home']);
           }
         }));
       },
@@ -209,5 +197,23 @@ export class ContratacaoComponent implements OnInit {
       });
     }
   }
+
+  setTurnoInstalacao(manha: string | undefined, tarde: string | undefined): string {
+    if (manha !== undefined && tarde !== undefined) {
+        if (manha && tarde) {
+            return 'Manhã ou Tarde';
+        }
+
+        if (manha && !tarde) {
+            return 'Manhã';
+        }
+
+        if (tarde && !manha) {
+            return 'Tarde';
+        }
+    }
+    return 'Há confirmar';
+  }
+
 
 }

@@ -23,7 +23,7 @@ import { ContratacaoComponent } from './components/contratacao/contratacao.compo
 export class AppComponent implements OnInit{
 
   constructor(private spinner: NgxSpinnerService) { }
-  
+
   ngOnInit(): void {
     this.spinner.show();
 

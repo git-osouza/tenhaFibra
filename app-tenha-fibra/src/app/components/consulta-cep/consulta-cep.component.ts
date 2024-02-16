@@ -23,7 +23,6 @@ export class ConsultaCepComponent implements OnInit{
 
 
   ngOnInit(): void {
-    this.renderImages();
   }
 
   consultarCep() {
@@ -54,7 +53,6 @@ export class ConsultaCepComponent implements OnInit{
     setTimeout(() => {
       if (typeof document !== 'undefined') {
         let filterContainer = document.querySelector(".container-cep") as HTMLElement;
-        console.log(filterContainer);
         filterContainer.style.backgroundImage = `url('assets/img/GIF-TENHA-FIBRA.gif-completo.gif')`;
       }
     }, 100);
