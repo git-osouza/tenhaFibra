@@ -1,0 +1,28 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#6D01A4" type="ball-spin-clockwise-fade"></ngx-spinner>
+
+<div *ngIf="!permiteAcesso" class="container">
+  <form class="was-validated" (ngSubmit)="submitForm()">
+    <div class="form-floating mb-3">
+      <input type="email" class="form-control" id="emailInput" [(ngModel)]="email" name="email" aria-describedby="emailHelp"
+        required>
+      <label for="emailInput">E-mail</label>
+      <div class="invalid-feedback">
+        Informe seu e-mail de acesso!
+      </div>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input type="password" class="form-control" id="senhaInput" [(ngModel)]="senha" name="senha" required>
+      <label for="senhaInput">Senha</label>
+      <div class="invalid-feedback">
+        Informe sua senha de acesso!
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary btn-assinar" [disabled]="isButtonDisabled()">Entrar</button>
+  </form>
+</div>
+
+
+<div *ngIf="permiteAcesso" class="container">
+  <app-admin></app-admin>
+</div>

@@ -8,11 +8,12 @@ import { ConsultaOfertasService } from './../../shared/services/ofertas/consulta
 import { environment } from '../../../environments/environment';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ContratacaoComponent } from '../contratacao/contratacao.component';
+import { InformacaoComponent } from '../informacao/informacao.component';
 
 @Component({
   selector: 'app-card-ofertas',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, InformacaoComponent],
   providers: [BsModalService],
   templateUrl: './card-ofertas.component.html',
   styleUrl: './card-ofertas.component.scss'

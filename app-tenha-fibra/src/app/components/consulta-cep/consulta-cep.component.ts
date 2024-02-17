@@ -5,12 +5,13 @@ import { CepFormatPipe } from '../../shared/pipes/cep-format.pipe';
 import { ConsultaCepService } from './../../shared/services/cep/consulta-cep.service';
 import { CompartilhamentoDadosService } from '../../shared/services/dados/compartilhamento-dados.service';
 import { CommonModule } from '@angular/common';
+import { InformacaoComponent } from '../informacao/informacao.component';
 
 
 @Component({
   selector: 'app-consulta-cep',
   standalone: true,
-  imports: [CepFormatPipe, FormsModule, CommonModule],
+  imports: [CepFormatPipe, FormsModule, CommonModule, InformacaoComponent],
   providers: [ConsultaCepService],
   templateUrl: './consulta-cep.component.html',
   styleUrl: './consulta-cep.component.scss'
