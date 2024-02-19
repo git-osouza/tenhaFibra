@@ -1,0 +1,32 @@
+.row{
+    display: grid;
+    background-color: white;
+    width: fit-content;
+    padding: 25px;
+    border-radius: 1.1875rem;
+
+    .input-cep{
+        width: 21.8125rem;
+        height: 3.125rem;
+        cursor: pointer;
+    }
+
+    .btn-consultar-cep{
+        width: 20.3125rem;
+        height: 3.125rem;
+        color: #fff;
+        background-color: #6D01A4;
+        border-radius: 20px;
+        border-color: #6D01A4;
+    }
+}
+
+.container-cep{
+    padding: 40px;
+    background-image: url('/assets/img/GIF-TENHA-FIBRA.gif-completo.gif');
+    width: auto;
+    height: 580px;
+    background-position: 10% 0;
+    background-size: cover
+}
+
