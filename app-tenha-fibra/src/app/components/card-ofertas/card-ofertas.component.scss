@@ -1,88 +1,87 @@
 /* oferta-card.component.css */
 
 .card {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-
-  .card-body {
-    padding: 4px;
-  }
-
-  .row {
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    margin: 0px -144px;
-  }
-
-  .col-1 .col-2 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-
-  }
-
-  .col-1 .col-2 img {
-    max-width: 50%;
-    height: 50%;
-    display: flex;
-  }
-
-  .col-3 {
-    flex: 0 0 25%;
-    display: grid;
-    align-items: center;
-    justify-content: space-between;
-
-    img{
-        max-width: 4%;
-        height: 6%;
-    }
-  }
-
-  img {
-    border: 0;
-    max-width: 43%;
-    vertical-align: middle;
-    display: inline-block;
-  }
-
-  .text-muted{
-    font-size: 12px !important;
-    font-style: normal !important;
-    font-weight: 500 !important;
-    line-height: normal !important;
-    display: flex;
-    text-align: center;
-    justify-content: center;
-    padding-top: 12px;
-  }
-
-  .text-muted-lazy{
-    font-size: 10px !important;
-    font-style: normal !important;
-    font-weight: 500 !important;
-    line-height: normal !important;
-    margin-left: 3px;
-  }
-
-  .detalhes{
-    padding: 0px;
-  }
-
-  .btn-assinar{
-    color: #fff !important;
-    background-color: #6D01A4 !important;
-    border-radius: 20px !important;
-    border-color: #6D01A4 !important;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.btn-assinar-wpp{
+.card-body {
+  padding: 4px;
+}
+
+.row {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.col-1 .col-2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+}
+
+.col-1 .col-2 img {
+  max-width: 50%;
+  height: 50%;
+  display: flex;
+}
+
+.col-3 {
+  flex: 0 0 25%;
+  display: grid;
+  align-items: center;
+  justify-content: space-between;
+
+  img {
+    max-width: 4%;
+    height: 6%;
+  }
+}
+
+img {
+  border: 0;
+  max-width: 43%;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.text-muted {
+  font-size: 12px !important;
+  font-style: normal !important;
+  font-weight: 500 !important;
+  line-height: normal !important;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  padding-top: 12px;
+}
+
+.text-muted-lazy {
+  font-size: 10px !important;
+  font-style: normal !important;
+  font-weight: 500 !important;
+  line-height: normal !important;
+  margin-left: 3px;
+}
+
+.detalhes {
+  padding: 0px;
+}
+
+.btn-assinar {
+  color: #fff !important;
+  background-color: #6D01A4 !important;
+  border-radius: 20px !important;
+  border-color: #6D01A4 !important;
+}
+
+.btn-assinar-wpp {
   color: #6D01A4 !important;
   background-color: #fff !important;
   border-radius: 20px !important;
@@ -95,7 +94,7 @@
   margin-bottom: 15px;
 }
 
-a{
+a {
   text-decoration: none;
   color: #fff;
 }
@@ -143,3 +142,16 @@ a{
   text-decoration: none;
 }
 
+.contartacao-cards {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.col-md-2 {
+  img {
+    max-width: 33% !important;
+    margin-bottom: -14px !important;
+  }
+
+}

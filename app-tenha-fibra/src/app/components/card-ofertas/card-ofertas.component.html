@@ -13,34 +13,34 @@
     <div class="card container" style="padding: 10px;">
       <div class="card-body">
         <div class="container">
-          <div class="row">
-            <div class="col-1">
+          <div class="row contartacao-cards">
+            <div class="col-md-1">
               <img [style.max-width]="'100%'" class="img-logos" *ngIf="item.info_plano.operadora === 'VIVO'" src="assets/img/vivo-logo.webp">
               <img [style.max-width]="'66%'"class="img-logos" *ngIf="item.info_plano.operadora === 'TIM'" src="assets/img/Logos_tim.png">
               <img [style.max-width]="'100%'"class="img-logos" *ngIf="item.info_plano.operadora === 'OI'" src="assets/img/oi-logo.webp">
               <img [style.max-width]="'66%'"class="img-logos" *ngIf="item.info_plano.operadora === 'SKY'" src="assets/img/logo-sky.svg">
               <span><strong style="display: block;">{{ item.info_plano.dados }}</strong></span>
             </div>
-            <div class="col-1">
+            <div class="col-md-1">
               <img src="assets/img/velocimetros.png" alt="Velocímetro">
               <span class="text-muted" *ngIf="item.info_plano.dados.split(' ')[0].length === 1"> {{
                 item.info_plano.dados.split(' ')[0] }} GB</span>
               <span class="text-muted" *ngIf="item.info_plano.dados.split(' ')[0].length !== 1"> {{
                 item.info_plano.dados.split(' ')[0] }} MB</span>
             </div>
-            <div class="col-1">
+            <div class="col-md-1">
               <img src="assets/img/cabo (1).png" alt="Cabo RJ45">
               <span class="text-muted">{{ item.info_plano.tecnologia }}</span>
             </div>
-            <div class="col-1">
+            <div class="col-md-2">
               <img src="assets/img/sinal.png" alt="WiFi">
               <span class="text-muted">WIFI incluso</span>
             </div>
-            <div class="col-1">
+            <div class="col-md-2">
               <img src="assets/img/streaming-de-video.png" alt="Serviços de streaming">
               <span class="text-muted detalhea">Serviços digitais*</span>
             </div>
-            <div class="col-1">
+            <div class="col-md-2">
               <strong>{{ item.valores_plano.valor_oferta | currency: 'BRL':'symbol':'1.2-2' }}</strong>
               <span class="text-muted">Por mês Instalação grátis</span>
             </div>
