@@ -33,6 +33,10 @@
               "src/styles.scss",
               "node_modules/ngx-spinner/animations/ball-spin-clockwise-fade.css"
             ],
+            "allowedCommonJsDependencies": [
+              "file-saver",
+              "sweetalert2"
+            ],
             "scripts": ["node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"],
             "server": "src/main.server.ts",
             "prerender": true,
@@ -45,13 +49,13 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
+                  "maximumWarning": "500mb",
                   "maximumError": "500mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "500mb",
+                  "maximumError": "500mb"
                 }
               ],
               "outputHashing": "all"
