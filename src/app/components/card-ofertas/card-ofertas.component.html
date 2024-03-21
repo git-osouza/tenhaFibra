@@ -1,0 +1,82 @@
+<nav *ngIf=" oferta && oferta.catalogo"
+  class="navbar navbar-expand-lg navbar-light w-100 navbar-clone fixed navbar-stick custom-bg-color p-4">
+  <div class="container px-3">
+    <span>Exibindo {{oferta.catalogo.length}} resultados para: {{oferta.endereco.logradouro}},
+      {{oferta.endereco.bairro}}, {{oferta.endereco.cidade}} - {{oferta.endereco.estado}},
+      {{oferta.endereco.cep}}</span>
+    <a href="/home"><strong>Alterar endereço</strong></a>
+  </div>
+</nav>
+
+<div *ngIf=" oferta && oferta.catalogo">
+  <div *ngFor="let item of paginatedCatalogo">
+    <div class="card container" style="padding: 10px;">
+      <div class="card-body">
+        <div class="container">
+          <div class="row contartacao-cards">
+            <div class="col-md-1">
+              <img [style.max-width]="'100%'" class="img-logos" *ngIf="item.info_plano.operadora === 'VIVO'" src="assets/img/vivo-logo.webp">
+              <img [style.max-width]="'66%'"class="img-logos" *ngIf="item.info_plano.operadora === 'TIM'" src="assets/img/Logos_tim.png">
+              <img [style.max-width]="'100%'"class="img-logos" *ngIf="item.info_plano.operadora === 'OI'" src="assets/img/oi-logo.webp">
+              <img [style.max-width]="'66%'"class="img-logos" *ngIf="item.info_plano.operadora === 'SKY'" src="assets/img/logo-sky.svg">
+              <span><strong style="display: block;">{{ item.info_plano.dados }}</strong></span>
+            </div>
+            <div class="col-md-1">
+              <img src="assets/img/velocimetros.png" alt="Velocímetro">
+              <span class="text-muted" *ngIf="item.info_plano.dados.split(' ')[0].length === 1"> {{
+                item.info_plano.dados.split(' ')[0] }} GB</span>
+              <span class="text-muted" *ngIf="item.info_plano.dados.split(' ')[0].length !== 1"> {{
+                item.info_plano.dados.split(' ')[0] }} MB</span>
+            </div>
+            <div class="col-md-1">
+              <img src="assets/img/cabo (1).png" alt="Cabo RJ45">
+              <span class="text-muted">{{ item.info_plano.tecnologia }}</span>
+            </div>
+            <div class="col-md-2">
+              <img src="assets/img/sinal.png" alt="WiFi">
+              <span class="text-muted">WIFI incluso</span>
+            </div>
+            <div class="col-md-2">
+              <img src="assets/img/streaming-de-video.png" alt="Serviços de streaming">
+              <span class="text-muted detalhea">Serviços digitais*</span>
+            </div>
+            <div class="col-md-2">
+              <strong>{{ item.valores_plano.valor_oferta | currency: 'BRL':'symbol':'1.2-2' }}</strong>
+              <span class="text-muted">Por mês Instalação grátis</span>
+            </div>
+            <div class="col-3">
+              <div *ngIf="item.cobertura; else noCobertura">
+                <img src="assets/img/question.png" alt="Check">
+                <span class="text-muted-lazy">Há confirmar</span>
+              </div>
+              <ng-template #noCobertura>
+                <img src="assets/img/incorreta.png" alt="Negativo">
+                <span class="text-muted-lazy">Sem cobertura</span>
+              </ng-template>
+              <button class="btn btn-success btn-assinar" (click)='assinarAgora(item)' type="button">Assinar
+              </button>
+              <div style="margin-top: 10px;"></div>
+              <button class="btn btn-success btn-assinar-wpp" (click)='assinarWhatsapp(item)' type="button">Assinar pelo Whatsapp
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex justify-content-end container">
+    <ul class="pagination  pagination-sm">
+      <li class="page-item" [class.disabled]="currentPage === 1">
+        <button class="page-link prev-next" (click)="setPage(currentPage - 1)" tabindex="-1" aria-disabled="true"> <span aria-hidden="true">&laquo;</span></button>
+      </li>
+      <li class="page-item" *ngFor="let page of pages" [class.active]="currentPage === page">
+        <a class="page-link" (click)="setPage(page)">{{ page }}</a>
+      </li>
+      <li class="page-item" [class.disabled]="currentPage === pages.length">
+        <button class="page-link prev-next" (click)="setPage(currentPage + 1)"> <span aria-hidden="true">&raquo;</span></button>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<app-informacao></app-informacao>
