@@ -1,4 +1,4 @@
-name: NodeJS with Webpack
+name: Build
 
 on:
   push:
@@ -7,21 +7,15 @@ on:
 
 jobs:
   build:
-    name: Build app
+    name: Build
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [14.x, 16.x, 18.x]
 
     steps:
     - name: Checkout code
-    - uses: actions/checkout@v3
+      uses: actions/checkout@v2
 
     - name: Install dependencies
       run: npm install
 
     - name: Build
       run: npm run build
-        
-  
