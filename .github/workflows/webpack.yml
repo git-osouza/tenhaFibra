@@ -45,4 +45,4 @@ jobs:
         git config --global user.email "ederson.gsouza96@gmail.com"
         git add dist
         git commit -m "Atualizar arquivos de build [skip ci]"
-        git push
+        git push https://$GITHUB_ACTOR:${{ secrets.GH_TOKEN }}@github.com/git-osouza/tenhaFibra.git HEAD:master
