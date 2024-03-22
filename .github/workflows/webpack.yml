@@ -39,6 +39,7 @@ jobs:
         git diff --quiet HEAD..HEAD~1 -- package.json || echo "::set-output name=changes::true"
                 
     - name: Add e commit dos arquivos de build
+      if: steps.check_changes.outputs.changes == 'true'
       uses: EndBug/add-and-commit@v7
       with:
         message: "Atualizar arquivos de build [skip ci]"
