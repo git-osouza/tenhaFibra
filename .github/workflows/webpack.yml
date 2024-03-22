@@ -33,13 +33,23 @@ jobs:
     - name: Build
       run: npm run build
 
-    - name: Verificar mudanças no package.json
-      id: check_changes
+    - name: Verificar mudanças no campo version do package.json
+      id: check_version_changes
       run: |
-        git diff --quiet HEAD..HEAD~1 -- package.json || echo "::set-output name=changes::true"
+        if git diff --quiet HEAD^..HEAD -- package.json; then
+          echo "Sem mudanças no arquivo package.json"
+        else
+          if git diff --exit-code --name-only HEAD^..HEAD | grep -q 'package.json'; then
+            if jq -e '.version' package.json > /dev/null; then
+              if jq -e '.version' package.json | grep -q 'new_version'; then
+                echo "::set-output name=version_changed::true"
+              fi
+            fi
+          fi
+        fi
                 
     - name: Add e commit dos arquivos de build
-      if: steps.check_changes.outputs.changes == 'true'
+      if: steps.check_version_changes.outputs.version_changed == 'true'
       uses: EndBug/add-and-commit@v7
       with:
         message: "Atualizar arquivos de build [skip ci]"
