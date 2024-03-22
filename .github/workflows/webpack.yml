@@ -33,10 +33,16 @@ jobs:
     - name: Build
       run: npm run build
 
-    - name: Commit files
-      run: 
-          git config --global user.name "git-osouza"
-          git config --global user.email "ederson.gsouza96@gmail.com"
-          git add .
-          git commit -m "Build and commit dist files" || echo "No changes to commit"
-          git push
+    - name: Verificar mudanças no package.json
+      id: check_changes
+      run: |
+        git diff --quiet HEAD..HEAD~1 -- package.json || echo "::set-output name=changes::true"
+          
+    - name: Commit dos arquivos de build
+      if: steps.check_changes.outputs.changes == 'true'
+      run: |
+        git config --global user.name "git-osouza"
+        git config --global user.email "ederson.gsouza96@gmail.com"
+        git add dist
+        git commit -m "Atualizar arquivos de build [skip ci]"
+        git push
