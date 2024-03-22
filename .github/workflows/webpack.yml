@@ -24,8 +24,8 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
-    - name: Clear caches
-      run: npm cache clean --force
+    - name: Clear caches and remove node_modules
+      run: npm cache clean --force && rm -rf node_modules
 
     - name: Install dependencies
       run: npm install --force
