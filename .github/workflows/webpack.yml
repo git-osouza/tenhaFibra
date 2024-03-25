@@ -39,7 +39,6 @@ jobs:
         mv dist/app-tenha-fibra/* deploy/
         mv /dist/app-tenha-fibra/.* deploy/ 2>/dev/null || :
         rm -rf deploy/dist/app-tenha-fibra
-        mv deploy/browser/* deploy/
         cd deploy
     
     - name: Commit e push dos arquivos de construção
