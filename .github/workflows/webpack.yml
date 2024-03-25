@@ -37,6 +37,7 @@ jobs:
       run: |
         git config --local user.email "ederson.gsouza96@gmail.com"
         git config --local user.name "git-osouza"
+        git remote set-url origin https://github.com/git-osouza/tenhaFibraDeploy.git
         git add .
         git add dist
         git commit -m "Atualizar arquivos de construção [skip ci]"
