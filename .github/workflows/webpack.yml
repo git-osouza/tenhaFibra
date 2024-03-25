@@ -1,4 +1,6 @@
 name: Build tenha fibra
+permissions:
+  contents: read
 
 on:
   push:
@@ -34,8 +36,6 @@ jobs:
       run: npm run build
       
     - name: Adicionar e cometer os arquivos de construção
-    permissions:
-      contents: read
       run: |
         git config --global user.email "ederson.gsouza96@gmail.com"
         git config --global user.name "git-osouza"
