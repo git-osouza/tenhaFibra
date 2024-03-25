@@ -36,15 +36,9 @@ jobs:
     - name: Clonar repositório deploy
       run: |
         git clone https://git-osouza:${{ secrets.TOKEN_TESTE_DEPLOY }}@github.com/git-osouza/tenhaFibraDeploy.git deploy
-        cd deploy
-         ls dist/app-tenha-fibra  # Verificar se o diretório existe e listar seu conteúdo
-        if [ -d "dist/app-tenha-fibra" ] && [ "$(ls -A dist/app-tenha-fibra)" ]; then
-          cp -r dist/app-tenha-fibra/* dist/
-          cp -r dist/app-tenha-fibra/.* dist/ 2>/dev/null || :
-          rm -rf dist/app-tenha-fibra
-        else
-          echo "O diretório dist/app-tenha-fibra não existe ou está vazio."
-        fi
+        mv deploy/dist/* deploy/
+        mv deploy/dist/.* deploy/ 2>/dev/null || :
+        rm -rf deploy/dist
     
     - name: Commit e push dos arquivos de construção
       run: |
