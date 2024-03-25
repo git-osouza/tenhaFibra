@@ -37,7 +37,7 @@ jobs:
       run: |
         git config --local user.email "ederson.gsouza96@gmail.com"
         git config --local user.name "git-osouza"
-        git remote add origin https://git-osouza:${{ secrets.TOKEN_TESTE_DEPLOY }}@github.com/git-osouza/tenhaFibraDeploy.git
+        git remote add origin https://git-osouza:${{ secrets.TOKEN_TESTE_DEPLOY }}@github.com/git-osouza/tenhaFibraDeploy.git || true
         git add .
         git commit -m "Atualizar arquivos de construção [skip ci]"
         git push origin HEAD:master
