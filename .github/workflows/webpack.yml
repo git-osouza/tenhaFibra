@@ -36,10 +36,14 @@ jobs:
     - name: Clonar repositório deploy
       run: |
         git clone https://git-osouza:${{ secrets.TOKEN_TESTE_DEPLOY }}@github.com/git-osouza/tenhaFibraDeploy.git deploy
-        cp -r dist deploy/
-        mv dist/app-tenha-fibra/* dist/
-        mv dist/app-tenha-fibra/.* dist/ 2>/dev/null || :
-        rm -rf dist/app-tenha-fibra
+        if [ -d "deploy" ]; then
+          mv dist/app-tenha-fibra/* dist/
+          mv dist/app-tenha-fibra/.* dist/ 2>/dev/null || :
+          rm -rf dist/app-tenha-fibra
+        else
+          echo "Erro: Falha ao clonar o repositório 'tenhaFibraDeploy'"
+          exit 1
+        fi
     
     - name: Commit e push dos arquivos de construção
       run: |
