@@ -36,9 +36,10 @@ jobs:
     - name: Clonar repositório deploy
       run: |
         git clone https://git-osouza:${{ secrets.TOKEN_TESTE_DEPLOY }}@github.com/git-osouza/tenhaFibraDeploy.git deploy
-        mv deploy/dist/* deploy/
-        mv deploy/dist/.* deploy/ 2>/dev/null || :
+        mv dist/* deploy/
+        mv /dist/.* deploy/ 2>/dev/null || :
         rm -rf deploy/dist
+        cd deploy
     
     - name: Commit e push dos arquivos de construção
       run: |
