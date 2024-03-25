@@ -40,4 +40,4 @@ jobs:
         git add .
         git add dist
         git commit -m "Atualizar arquivos de construção [skip ci]"
-        git push https://${{ secrets.GH_TOKEN }}:${{ secrets.PAT }}@github.com/git-osouza/tenhaFibraDeploy.git HEAD:master
+        git push https://${{ secrets.TOKEN_TESTE_DEPLOY }}:${{ secrets.PAT }}@github.com/git-osouza/tenhaFibraDeploy.git HEAD:master
