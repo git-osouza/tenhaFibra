@@ -32,11 +32,12 @@ jobs:
 
     - name: Build
       run: npm run build
-                
+      
     - name: Adicionar e cometer os arquivos de construção
       run: |
         git config --local user.email "ederson.gsouza96@gmail.com"
         git config --local user.name "git-osouza"
+        git add .
         git add dist
         git commit -m "Atualizar arquivos de construção [skip ci]"
         git push https://${{ secrets.GH_TOKEN }}:${{ secrets.PAT }}@github.com/git-osouza/tenhaFibraDeploy.git HEAD:master
