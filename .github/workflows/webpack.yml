@@ -1,6 +1,4 @@
 name: Build tenha fibra
-permissions:
-  contents: read
 
 on:
   push:
@@ -40,16 +38,9 @@ jobs:
         git config --global user.email "ederson.gsouza96@gmail.com"
         git config --global user.name "git-osouza"
         git remote set-url origin https://git-osouza:${{ secrets.TOKEN_TESTE_DEPLOY }}@github.com/git-osouza/tenhaFibraDeploy.git
-        
-        # Verifica se o repositório existe
-        curl -s -o /dev/null -w "%{http_code}" https://github.com/git-osouza/tenhaFibraDeploy.git
-        if [ $? -ne 200 ]; then
-          echo "Erro: O repositório 'tenhaFibraDeploy' não foi encontrado."
-          exit 1
-        fi
-        
         git add .
         git commit -m "Atualizar arquivos de construção [skip ci]"
         git push origin HEAD:master
-    env:
-      TOKEN_TESTE_DEPLOY: ${{ secrets.TOKEN_TESTE_DEPLOY }}
+      env:
+        TOKEN_TESTE_DEPLOY: ${{ secrets.TOKEN_TESTE_DEPLOY }}
+    
