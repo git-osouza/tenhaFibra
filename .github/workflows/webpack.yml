@@ -33,10 +33,10 @@ jobs:
     - name: Build
       run: npm run build
                 
-    - name: Add e commit dos arquivos de build
-      uses: EndBug/add-and-commit@v7
-      with:
-        message: "Atualizar arquivos de build [skip ci]"
-        add: "dist"
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Adicionar e cometer os arquivos de construção
+      run: |
+        git config --local user.email "ederson.gsouza96@gmail.com"
+        git config --local user.name "git-osouza"
+        git add dist
+        git commit -m "Atualizar arquivos de construção [skip ci]"
+        git push https://${{ secrets.USERNAME }}:${{ secrets.PAT }}@github.com/git-osouza/tenhaFibraDeploy.git HEAD:master
