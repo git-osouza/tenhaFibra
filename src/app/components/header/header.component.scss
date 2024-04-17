@@ -44,3 +44,7 @@
 .offcanvas-body {
   padding-top: 0;
 }
+
+.navbar {
+  z-index: 1000; /* Defina um valor alto para garantir que o cabeçalho fique sempre no topo */
+}
