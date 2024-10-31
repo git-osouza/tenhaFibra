@@ -8,5 +8,5 @@ export class Cep {
     ibge?: string;
     gia?: string;
     ddd?: string;
-    siafi?: string
+    siafi?: string;
 }
