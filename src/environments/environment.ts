@@ -1,5 +1,5 @@
 
-const hostApi =  'https://api.tenhafibra.com.br/tenha-fibra/php/';
+const hostApi =  'https://api.tenhafibra.com.br/tenha-fibra/';
 
 export const environment = {
     production: false,
