@@ -54,4 +54,3 @@ jobs:
         git push origin HEAD:master
       env:
         TOKEN_TESTE_DEPLOY: ${{ secrets.TOKEN_TESTE_DEPLOY }}
-
